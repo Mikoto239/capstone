@@ -1,4 +1,3 @@
-
 {
   "version": 2,
   "builds": [{ "src": "/app.js", "use": "@vercel/node" }],
@@ -8,8 +7,6 @@
     { "src": "/getme", "dest": "/app.js" }
   ],
   "functions": {
-    "api/*": {
-      "timeout": 30 
-    }
+    "api/*": {}
   }
 }
