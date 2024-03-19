@@ -8,7 +8,7 @@
   ],
   "functions": {
     "api/*": {
-      "timeout": 30 // Increase timeout to 30 seconds (or adjust as needed)
+      "timeout": 30 
     }
   }
 }
