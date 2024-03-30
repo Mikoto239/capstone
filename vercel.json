@@ -8,6 +8,8 @@
     { "src": "/register", "dest": "/app.js" }
   ],
   "functions": {
-    "api/*": {}
+    "api/*": {
+      "timeout": 30 
+    }
   }
 }
