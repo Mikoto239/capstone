@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const homeRouter = require('./home.js');
-const Hardware = require('./models/hardware.js');
 require('dotenv').config(); // Load environment variables
 
 const app = express();
@@ -48,27 +47,6 @@ app.post('/data', (req, res) => {
       console.error('Error saving data to MongoDB:', error);
       res.status(500).send('Failed to save data!');
     });
-});
-
-app.post('/register', async (req, res) => {
-  const { uniqueId } = req.body; // Extract the uniqueId from the request body
-
-  try {
-    // Check if the hardware with the uniqueId already exists
-    const existingHardware = await Hardware.findOne({ uniqueId });
-
-    if (existingHardware) {
-      return res.status(400).json({ message: 'Hardware already registered' });
-    } else {
-      // Create a new hardware document
-      const newHardware = new Hardware({ uniqueId });
-      await newHardware.save();
-      return res.status(200).json({ message: 'Hardware registered successfully' });
-    }
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: 'Internal server error' });
-  }
 });
 
 // Route to fetch data from MongoDB (GET)
