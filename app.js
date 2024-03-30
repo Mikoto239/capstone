@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const homeRouter = require('./home.js');
-const Hardware = require('./models/hardware');
+const Hardware = require('./models/hardware.js');
 require('dotenv').config(); // Load environment variables
 
 const app = express();
@@ -50,7 +50,7 @@ app.post('/data', (req, res) => {
     });
 });
 
-app.post('/register', async (req, res) => {
+app.post('/checking', async (req, res) => {
   const { uniqueId } = req.body; // Extract the uniqueId from the request body
 
   try {
