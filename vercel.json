@@ -4,8 +4,7 @@
   "routes": [
     { "src": "/data", "dest": "/app.js" },
     { "src": "/", "dest": "/app.js" },
-    { "src": "/getme", "dest": "/app.js" },
-  
+    { "src": "/getme", "dest": "/app.js" }
   ],
   "functions": {
     "api/*": {
