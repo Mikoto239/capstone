@@ -4,7 +4,7 @@ const arduinoDataSchema = new mongoose.Schema({
   vibrationDuration: Number,
   latitude: Number,
   longitude: Number,
-  macAddress: String 
+  uniqueId: String 
 });
 
 
