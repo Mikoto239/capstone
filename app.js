@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const homeRouter = require('./home.js');
 const Hardware = require('./models/hardware.js');
+const ArduinoData = require('./models/arduinoData.js');
 require('dotenv').config(); // Load environment variables
 
 const app = express();
@@ -19,24 +20,17 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
-// Define schema for Arduino data
-const arduinoDataSchema = new mongoose.Schema({
-  vibrationDuration: Number,
-  latitude: Number,
-  longitude: Number
-});
-const ArduinoData = mongoose.model('ArduinoData', arduinoDataSchema);
 
 app.use(bodyParser.json());
 
-// Route to handle Arduino data (POST)
 app.post('/data', (req, res) => {
-  const { vibrationDuration, latitude, longitude } = req.body;
+  const { vibrationDuration, latitude, longitude, uniqueId } = req.body; // Updated to include macAddress
 
   const arduinoData = new ArduinoData({
     vibrationDuration,
     latitude,
-    longitude
+    longitude,
+    uniqueId
   });
 
   arduinoData.save()
@@ -49,6 +43,7 @@ app.post('/data', (req, res) => {
       res.status(500).send('Failed to save data!');
     });
 });
+
 
 app.post('/register', async (req, res) => {
   const { uniqueId } = req.body; // Extract the uniqueId from the request body
