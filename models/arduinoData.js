@@ -4,7 +4,11 @@ const arduinoDataSchema = new mongoose.Schema({
   vibrationDuration: Number,
   latitude: Number,
   longitude: Number,
-  uniqueId: String 
+  uniqueId: String,,
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 
